@@ -3,42 +3,37 @@ import {
     View,
     Text,
     StyleSheet,
-    Image,
-    TouchableOpacity
+    Image
 } from "react-native";
 
-import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
+import { Icon } from 'native-base'
 
+import { Card, CardItem, Thumbnail, Body, Left, Right, Button } from 'native-base'
 
+class FollowTab extends Component {
 
+    static navigationOptions = {
 
+        tabBarIcon: ({ tintColor }) => (
+            <Text style={{ color: tintColor}} >You</Text>
+        )
 
-
-
-class CardComponent extends Component {
-
-state ={
-  completed: false
-}
-
-toggleToDo =() =>{
-  this.setState({ completed: !this.state.completed })
-}
+    }
 
     render() {
 
         const images = {
 
-            "1": require('../assets/feed_images/1.jpg'),
-            "2": require('../assets/feed_images/2.jpg'),
-            "3": require('../assets/feed_images/3.png')
+            "1": require('../../../assets/feed_images/1.jpg'),
+            "2": require('../../../assets/feed_images/2.jpg'),
+            "3": require('../../../assets/feed_images/3.png')
         }
 
         return (
             <Card>
                 <CardItem>
                     <Left>
-                        <Thumbnail source={require('../assets/me.jpg')} />
+                        <Thumbnail source={require('../../../assets/me.jpg')} />
                         <Body>
                             <Text>Aidar </Text>
                             <Text note>Jan 15, 2018</Text>
@@ -50,14 +45,9 @@ toggleToDo =() =>{
                 </CardItem>
                 <CardItem style={{ height: 45 }}>
                     <Left>
-
-                        <Button  transparent>
-                        <TouchableOpacity onPress={this.toggleToDo}>
-                            <Icon name= {this.state.completed ?  "ios-heart" : "ios-heart-outline" }  style={{color: ( this.state.completed ? 'red' : 'black'  )}} />
-                            </TouchableOpacity >
-
+                        <Button transparent>
+                            <Icon name="ios-heart-outline" style={{ color: 'black' }} />
                         </Button>
-
                         <Button transparent>
                             <Icon name="ios-chatbubbles-outline" style={{ color: 'black' }} />
                         </Button>
@@ -84,13 +74,12 @@ toggleToDo =() =>{
         );
     }
 }
-export default CardComponent;
+export default FollowTab;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
-
     }
 });

@@ -17,7 +17,7 @@ import { Icon } from 'native-base'
 
 class MainScreen extends Component {
 
-  
+
 
     render() {
         return (
@@ -48,7 +48,7 @@ const AppTabNavigator = TabNavigator({
 
 }, {
         animationEnabled: true,
-        swipeEnabled: true,
+        swipeEnabled: false,
         tabBarPosition: "bottom",
         tabBarOptions: {
             style: {

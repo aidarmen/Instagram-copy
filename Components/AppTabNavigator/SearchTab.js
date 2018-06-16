@@ -5,7 +5,9 @@ import {
     StyleSheet
 } from "react-native";
 
-import { Icon } from 'native-base'
+import { Icon } from 'native-base';
+import { Camera, Permissions } from 'expo';
+
 
 class SearchTab extends Component {
 
@@ -18,9 +20,11 @@ class SearchTab extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <Text>SearchTab</Text>
-            </View>
+
+          <View style={styles.container}>
+<Text> SearchTab</Text>
+</View>
+
         );
     }
 }
@@ -31,5 +35,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
+
     }
 });
