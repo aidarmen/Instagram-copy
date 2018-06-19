@@ -21,8 +21,19 @@ state ={
   completed: false
 }
 
+
 toggleToDo =() =>{
   this.setState({ completed: !this.state.completed })
+}
+onDoublePress = (date) => {
+        const time = new Date().getTime();
+    const delta = time - this.lastPress;
+
+    const DOUBLE_PRESS_DELAY = 400;
+    if (delta < DOUBLE_PRESS_DELAY) {
+        this.toggleToDo;
+    }
+    this.lastPress = time;
 }
 
     render() {
@@ -46,7 +57,7 @@ toggleToDo =() =>{
                     </Left>
                 </CardItem>
                 <CardItem cardBody>
-                    <Image source={images[this.props.imageSource]} style={{ height: 200, width: null, flex: 1 }} />
+                    <Image onPress={this.onDoublePress} source={images[this.props.imageSource]} style={{ height: 200, width: null, flex: 1 }} />
                 </CardItem>
                 <CardItem style={{ height: 45 }}>
                     <Left>
@@ -69,8 +80,8 @@ toggleToDo =() =>{
                     </Left>
                 </CardItem>
 
-                <CardItem style={{ height: 20 }}>
-                    <Text>{this.props.likes} likes</Text>
+                <CardItem style={{  }}>
+                    <Text>{  (this.props.likes) + (this.state.completed ? "1" : "0" )  } likes</Text>
                 </CardItem>
                 <CardItem>
                     <Body>

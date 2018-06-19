@@ -22,7 +22,7 @@ class LikesTab extends Component {
 
     render() {
         return (
-            <LikesTabNavigator />
+            <LikesTabNavigator  />
         );
     }
 }
@@ -45,6 +45,7 @@ const LikesTabNavigator = TabNavigator({
         tabBarPosition: "top",
         tabBarOptions: {
             style: {
+              paddingTop: 15, 
                 ...Platform.select({
                     android: {
                         backgroundColor: 'white'
@@ -53,6 +54,7 @@ const LikesTabNavigator = TabNavigator({
                         backgroundColor: 'white'
                     }
                 })
+
             },
             activeTintColor: '#000',
             inactiveTintColor: '#d1cece',

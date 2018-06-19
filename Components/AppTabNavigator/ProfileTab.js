@@ -5,11 +5,16 @@ import {
     StyleSheet,
     Image,
     Dimensions,
-    FlatList
+    FlatList,
+    Platform,
+    StatusBar,
+    TouchableHighlight
 } from "react-native";
 
-import { Container, Content, Icon, Header, Left, Body, Right, Segment, Button } from 'native-base'
+import { Container, Content, Icon, Header, Left, Body, Right, Segment, Button,  } from 'native-base'
 import EntypoIcon from 'react-native-vector-icons/Entypo';
+
+import Modal from 'react-native-modal';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 var { height, width } = Dimensions.get('window');
 
@@ -31,22 +36,39 @@ var images = [
 ]
 
 class ProfileTab extends Component {
-
     static navigationOptions = {
 
 
         tabBarIcon: ({ tintColor }) => (
             <Icon name="person" style={{ color: tintColor }} />
         )
-    }
+    };
+    signout(){
+
+    };
+    state = {
+    visibleModal: null,
+     activeIndex: 0
+    };
+     _renderModalContent = () => (
+        <TouchableHighlight style={{
+            width:'100%',
+            height: '100%'
+        }
+        } onPress={() => this.setState({ visibleModal: null })}>
+            <CardComponent imageSource="3" likes="101" />
+        </TouchableHighlight>
+  );;
 
     constructor(props) {
         super(props)
 
-        this.state = {
-            activeIndex: 0
-        }
-    }
+
+        this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
+    };
+    forceUpdateHandler(){
+    this.forceUpdate();
+  };
 
     segmentClicked(index) {
         this.setState({
@@ -70,17 +92,20 @@ class ProfileTab extends Component {
     renderSectionOne() {
         return images.map((image, index) => {
             return (
-                <View key={index} style={[{ width: (width) / 3 }, { height: (width) / 3 }, { marginBottom: 2 }, index % 3 !== 0 ? { paddingLeft: 2 } : { paddingLeft: 0 }]}>
-                    <Image style={{
-                        flex: 1,
-                        alignSelf: 'stretch',
-                        width: undefined,
-                        height: undefined,
+                <View  key={index} style={[{ width: (width) / 3 }, { height: (width) / 3 }, { marginBottom: 2 }, index % 3 !== 0 ? { paddingLeft: 2 } : { paddingLeft: 0 }]}>
+                    <TouchableHighlight style={{width:'100%',height: '100%'}}  onPress={() => this.setState({ visibleModal: 1 })}>
+                        <Image  style={{
+                            flex: 1,
+                            alignSelf: 'stretch',
+                            width: undefined,
+                            height: undefined,
 
-                    }}
-                        source={image}>
-                    </Image>
-
+                        }}
+                            source={image} />
+                    </TouchableHighlight>
+                      <Modal isVisible={this.state.visibleModal === 1}>
+                        {this._renderModalContent()}
+                    </Modal>
                 </View>
             )
         })
@@ -117,16 +142,18 @@ class ProfileTab extends Component {
     render() {
         return (
             <Container style={styles.container}>
-                <Header style={{ paddingLeft: 10, paddingLeft: 10 }}>
+                <Header style={{ paddingLeft: 10, paddingLeft: 10}, [styles.androidHeader] }>
                     <Left>
                         <Icon name="md-person-add" />
                     </Left>
+
                     <Right>
                         <EntypoIcon name="back-in-time" style={{ fontSize: 32 }} />
                     </Right>
                 </Header>
 
                 <Content>
+
 
                     <View style={{ paddingTop: 10 }}>
 
@@ -172,7 +199,7 @@ class ProfileTab extends Component {
                                         style={{ flexDirection: 'row' }}>
 
                                         {/** Edit profile takes up 3/4th **/}
-                                        <Button bordered dark
+                                        <Button  bordered dark
                                             style={{ flex: 3, marginLeft: 10, justifyContent: 'center', height: 30 }}><Text>Edit Profile</Text></Button>
 
 
@@ -182,7 +209,8 @@ class ProfileTab extends Component {
                                             height: 30,
                                             marginRight: 10, marginLeft: 5,
                                             justifyContent: 'center'
-                                        }}>
+                                       }}
+                                       >
                                             <Icon name="settings" style={{ color: 'black' }}></Icon></Button>
                                     </View>
                                 </View>{/**End edit profile**/}
@@ -249,6 +277,23 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white'
+    },
+       androidHeader: {
+        ...Platform.select({
+            android: {
+                marginTop: StatusBar.currentHeight,
+                backgroundColor: 'white',
+                marginTop:0
+            }
+        })
+    },
+     androidHeaderTitle: {
+        ...Platform.select({
+            android: {
+                alignItems: 'flex-end'
+            }
+        })
+
     }
 });
 

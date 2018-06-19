@@ -14,12 +14,13 @@ import { Container, Content, Icon, Header, Left, Body, Right, Segment, Button, T
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { List, ListItem, SearchBar } from 'react-native-elements';
+import { Constants, Video } from 'expo';
 var { height, width } = Dimensions.get('window');
 
 import CardComponent from '../CardComponent'
 
 var images = [
-    require('../../assets/feed_images/1.jpg'),
+  require('../../assets/feed_images/1.jpg'),
     require('../../assets/feed_images/2.jpg'),
     require('../../assets/feed_images/3.png'),
     require('../../assets/feed_images/4.jpg'),
@@ -43,32 +44,9 @@ class SearchTab extends Component {
         )
     }
 
-    constructor(props) {
-        super(props)
 
-        this.state = {
-            activeIndex: 0
-        }
-    }
 
-    segmentClicked(index) {
-        this.setState({
-            activeIndex: index
-        })
-    }
-    checkActive = (index) => {
-        if (this.state.activeIndex !== index) {
-            return (
-                { color: 'grey' }
-            )
-        }
-        else {
-            return (
-                {}
-            )
-        }
 
-    }
 
     renderSectionOne() {
         return images.map((image, index) => {
@@ -91,28 +69,7 @@ class SearchTab extends Component {
 
     }
 
-    renderSection() {
 
-        if (this.state.activeIndex == 0) {
-
-            return (
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-
-                    {this.renderSectionOne()}
-                </View>
-            )
-
-        }
-        else if (this.state.activeIndex == 1) {
-            return (
-                <View>
-                    <CardComponent imageSource="1" likes="101" />
-                    <CardComponent imageSource="2" likes="101" />
-                    <CardComponent imageSource="3" likes="101" />
-                </View>
-            )
-        }
-    }
 
     componentDidMount() {
         console.log(width)
@@ -123,7 +80,7 @@ class SearchTab extends Component {
             <Container style={styles.container}>
 
 
-                <Content>
+                <Content style={{marginTop: 15}}>
 
                     <View>
                     <View style={styles.searchSection}>
@@ -138,6 +95,7 @@ class SearchTab extends Component {
 
 <View style={{padding: 2, backgroundColor:'white'}}>
                     <ScrollView
+
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                         contentContainerStyle={{
@@ -189,16 +147,90 @@ class SearchTab extends Component {
                     </View>
 
 
-                    <View >
+                    <View  style={{flex: 2,
+        flexDirection: 'row', marginTop: 10}}>
 
 
 
 
                         {/** Height =width/3 so that image sizes vary according to size of the phone yet remain squares **/}
 
-                        {this.renderSection()}
+                        <Video
+                          source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
+                          rate={1.0}
+                          volume={1.0}
+                          isMuted={true}
+                          resizeMode="cover"
+                          shouldPlay
+                          isLooping
+                          style={{width: (width) * 2 / 3, height: (width) *2 /3,marginRight: 1}}
+
+                        />
+
+                        <View  style={{flex: 1,
+            flexDirection: 'column'}}>
+<Image resizeMode="cover" style={{width: (width) / 3, height: (width) /3, marginBottom: 1 }} source={require('../../assets/feed_images/1.jpg')} />
+<Image resizeMode="cover" style={{width: (width) / 3, height: (width)  /3 }}  source={require('../../assets/feed_images/2.jpg')} />
+
+            </View>
+
 
                     </View>
+
+
+                    <View  style={{flex: 1,
+                  flexDirection: 'row', marginTop:1}}>
+                  <Image resizeMode="cover" style={{width: (width) / 3, height: (width) /3, marginRight: 1 }} source={require('../../assets/feed_images/3.png')} />
+                  <Image resizeMode="cover" style={{width: (width) / 3, height: (width)  /3, marginRight: 1  }}  source={require('../../assets/feed_images/4.jpg')} />
+                  <Image resizeMode="cover" style={{width: (width) / 3, height: (width)  /3 }}  source={require('../../assets/feed_images/5.jpg')} />
+                  </View>
+                  <View  style={{flex: 1,
+                  flexDirection: 'row',  marginTop:1}}>
+                  <Image resizeMode="cover" style={{width: (width) / 3, height: (width) /3, marginRight: 1 }} source={require('../../assets/feed_images/8.png')} />
+                  <Image resizeMode="cover" style={{width: (width) / 3, height: (width)  /3, marginRight: 1 }}  source={require('../../assets/feed_images/9.jpg')} />
+                  <Image resizeMode="cover" style={{width: (width) / 3, height: (width)  /3 }}  source={require('../../assets/feed_images/10.jpg')} />
+                  </View>
+
+
+                    <View  style={{flex: 2,
+        flexDirection: 'row', marginTop:1}}>
+
+
+
+
+                        {/** Height =width/3 so that image sizes vary according to size of the phone yet remain squares **/}
+
+
+                        <View  style={{
+                      flexDirection: 'column'}}>
+                      <Image resizeMode="cover" style={{width: (width) / 3, height: (width) /3,  marginBottom: 1,  marginRight: 1 }} source={require('../../assets/feed_images/6.jpg')} />
+                      <Image resizeMode="cover" style={{width: (width) / 3, height: (width)  /3,  marginRight: 1 }}  source={require('../../assets/feed_images/7.jpg')} />
+
+                      </View>
+                        <Video
+                          source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
+                          rate={1.0}
+                          volume={1.0}
+                          isMuted={true}
+                          resizeMode="cover"
+                          shouldPlay
+                          isLooping
+
+                          style={{width: (width) * 2 / 3, height: (width) *2 /3 }}
+                        />
+
+
+
+
+                    </View>
+
+                    <View  style={{flex: 1,
+                  flexDirection: 'row', marginTop:1}}>
+                  <Image resizeMode="cover" style={{width: (width) / 3, height: (width) /3, marginRight: 1 }} source={require('../../assets/feed_images/11.jpg')} />
+                  <Image resizeMode="cover" style={{width: (width) / 3, height: (width)  /3, marginRight: 1  }}  source={require('../../assets/feed_images/12.jpg')} />
+                  <Image resizeMode="cover" style={{width: (width) / 3, height: (width)  /3 }}  source={require('../../assets/feed_images/8.png')} />
+                  </View>
+
                 </Content>
             </Container >
         );
@@ -209,7 +241,7 @@ export default SearchTab;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'green'
+        backgroundColor: 'white'
     },
     searchSection: {
     flex: 1,
