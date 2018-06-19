@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { StackNavigator } from 'react-navigation'
-import MainScreen from './Components/MainScreen'
+import Connect from './Components/Connect'
 
 
 export default class App extends React.Component {
@@ -16,8 +16,8 @@ export default class App extends React.Component {
 const AppStackNavigator = StackNavigator({
 
 
-  Main: {
-    screen: MainScreen
+Connect: {
+    screen: Connect
   }
 })
 

@@ -6,6 +6,7 @@ import {
     Image,
     TouchableOpacity
 } from "react-native";
+import ProfileTab from './AppTabNavigator/ProfileTab'
 
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 
@@ -49,8 +50,8 @@ onDoublePress = (date) => {
             <Card>
                 <CardItem>
                     <Left>
-                        <Thumbnail source={require('../assets/me.jpg')} />
-                        <Body>
+                        <Thumbnail   source={require('../assets/me.jpg') } />
+                        <Body >
                             <Text>Aidar </Text>
                             <Text note>Jan 15, 2018</Text>
                         </Body>

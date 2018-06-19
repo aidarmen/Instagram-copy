@@ -6,7 +6,7 @@ import {
     Platform
 } from "react-native";
 
-import HomeTab from './AppTabNavigator/HomeTab'
+import Main from './AppTabNavigator/Main'
 import SearchTab from './AppTabNavigator/SearchTab'
 import AddMediaTab from './AppTabNavigator/AddMediaTab'
 import LikesTab from './AppTabNavigator/LikesTab'
@@ -14,6 +14,7 @@ import ProfileTab from './AppTabNavigator/ProfileTab'
 
 import { TabNavigator } from 'react-navigation'
 import { Icon } from 'native-base'
+
 
 class MainScreen extends Component {
 
@@ -31,8 +32,8 @@ export default MainScreen;
 
 const AppTabNavigator = TabNavigator({
 
-    HomeTab: {
-        screen: HomeTab
+    Main: {
+        screen: Main
     },
     SearchTab: {
         screen: SearchTab
@@ -69,6 +70,9 @@ const AppTabNavigator = TabNavigator({
             showIcon: true
         }
     })
+
+
+
 
 const styles = StyleSheet.create({
     container: {

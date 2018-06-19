@@ -9,22 +9,20 @@ import {
 import { Container, Content, Icon, Thumbnail, Header, Left, Right, Body } from 'native-base'
 import CardComponent from '../CardComponent'
 
+import AddMediaTab from './AddMediaTab'
+import Direct from './Direct'
+
 class HomeTab extends Component {
 
-    static navigationOptions = {
 
-        tabBarIcon: ({ tintColor }) => (
-            <Icon name="ios-home" style={{ color: tintColor }} />
-        )
-    }
 
     render() {
         return (
             <Container style={styles.container}>
                 <Header>
-                    <Left><Icon name="ios-camera-outline" style={{ paddingLeft: 10 }} /></Left>
+                    <Left><Icon  onPress={() => this.props.navigation.navigate( 'AddMediaTab' )}  name="ios-camera-outline" style={{ paddingLeft: 10 }} /></Left>
                     <Body><Text style={{ fontSize: 20 }}>Instagram</Text></Body>
-                    <Right><Icon style={{ paddingRight: 10 }} name="ios-send-outline" /></Right>
+                    <Right><Icon  onPress={() => this.props.navigation.navigate( 'Direct' )}  style={{ paddingRight: 10 }} name="ios-send-outline" /></Right>
                 </Header>
                 <Content>
 
@@ -83,6 +81,9 @@ class HomeTab extends Component {
     }
 }
 export default HomeTab;
+
+
+
 
 const styles = StyleSheet.create({
     container: {
